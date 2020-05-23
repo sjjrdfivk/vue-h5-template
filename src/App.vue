@@ -32,7 +32,12 @@ export default {
 </script>
 
 <style lang="less">
-@import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css';
+@import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css'; // muse-ui对应icons样式
+.Loading{
+  position: fixed;
+  left: 45%;
+  top: 30%;
+}
 #app {
   height: 100%;
   width: 100%;
@@ -49,7 +54,7 @@ export default {
   backface-visibility: hidden;
   perspective: 1000;
   -webkit-perspective: 1000;
-  background: rgba(242,242,248,1);
+  overflow: hidden;
 }
 .slide-left-enter,
 .slide-right-leave-active {

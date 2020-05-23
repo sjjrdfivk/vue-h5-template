@@ -1,14 +1,22 @@
 <template>
   <div class="home-page">
     <section class="home-section">
-      <movies v-show="shift === 'movies'"></movies>
-      <music v-show="shift === 'music'"></music>
-      <books v-show="shift === 'books'"></books>
-      <pictures v-show="shift === 'pictures'"></pictures>
+      <div v-show="shift === 'movies'">
+        <movies v-if="actions.includes('movies')"></movies>
+      </div>
+      <div v-show="shift === 'music'">
+        <music v-if="actions.includes('music')"></music>
+      </div>
+      <div v-show="shift === 'books'">
+        <books v-if="actions.includes('books')"></books>
+      </div>
+      <div v-show="shift === 'pictures'">
+        <pictures v-if="actions.includes('pictures')"></pictures>
+      </div>
     </section>
     <footer class="home-container">
       <mu-container>
-        <mu-bottom-nav :value.sync="shift" shift>
+        <mu-bottom-nav :value.sync="shift" shift @change="change">
             <mu-bottom-nav-item value="movies" title="Movies" icon="ondemand_video"></mu-bottom-nav-item>
             <mu-bottom-nav-item value="music" title="Music" icon="music_note"></mu-bottom-nav-item>
             <mu-bottom-nav-item value="books" title="Books" icon="books"></mu-bottom-nav-item>
@@ -27,10 +35,18 @@ import pictures from './components/pictures'
 export default {
   data () {
     return {
-      shift: 'movies'
+      shift: 'movies',
+      actions: ['movies']
     }
   },
   created () {
+  },
+  methods: {
+    change (value) {
+      if (!this.actions.includes(value)) {
+        this.actions.push(value)
+      }
+    }
   },
   components: {
     movies, music, books, pictures
@@ -50,7 +66,11 @@ export default {
     width: 100%;
     flex: 1;
     box-sizing: border-box;
-    padding: 1rem .2rem 0;
+    // padding: 1rem .2rem 0;
+    >div{
+      height: 100%;
+      width: 100%;
+    }
   }
   .home-container{
     width: 100%;

@@ -1,5 +1,5 @@
 <template>
-  <div class="movies">
+  <div class="movies" v-loading="loading">
     4
   </div>
 </template>
@@ -8,12 +8,16 @@
 export default {
   data () {
     return {
+      loading: true
     }
   },
   created () {
+    setTimeout(() => {
+      this.loading = false
+    }, 1000)
   }
 }
 </script>
-<style scope lang="less">
+<style scoped lang="less">
 
 </style>

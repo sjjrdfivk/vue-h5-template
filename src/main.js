@@ -10,9 +10,14 @@ import '@/assets/css/index.css'
 import 'lib-flexible'
 
 // 全局引入muse-ui库
+import Loading from 'muse-ui-loading'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 Vue.use(MuseUI)
+Vue.use(Loading, {
+  overlayColor: '',
+  className: 'Loading'
+})
 
 // 导航库（用于页面缓存）
 Vue.use(Navigation, { router })
