@@ -3,8 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Navigation from 'vue-navigation'
-// 引入公共样式
+// 引入muse-ui样式
 import '@/assets/css/index.css'
+import '@/assets/css/material-icons.css'
 
 // 适配
 import 'lib-flexible'

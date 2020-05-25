@@ -1,16 +1,16 @@
 <template>
   <div class="home-page">
     <section class="home-section">
-      <div v-show="shift === 'movies'">
+      <div v-show="home.shift === 'movies'">
         <movies v-if="actions.includes('movies')"></movies>
       </div>
-      <div v-show="shift === 'music'">
+      <div v-show="home.shift === 'music'">
         <music v-if="actions.includes('music')"></music>
       </div>
-      <div v-show="shift === 'books'">
+      <div v-show="home.shift === 'books'">
         <books v-if="actions.includes('books')"></books>
       </div>
-      <div v-show="shift === 'pictures'">
+      <div v-show="home.shift === 'pictures'">
         <pictures v-if="actions.includes('pictures')"></pictures>
       </div>
     </section>
@@ -32,19 +32,46 @@ import movies from './components/movies'
 import music from './components/music'
 import books from './components/books'
 import pictures from './components/pictures'
+import { getRequest, postRequest } from '@/api/home.js'
+import { mapState, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      shift: 'movies',
       actions: ['movies']
     }
   },
+  computed: {
+    ...mapState(['home']), // State调用
+    shift: {
+      get: function () {
+        return this.home.shift
+      },
+      set: function (value) {
+        this.setHomeShift(value)
+      }
+    }
+  },
   created () {
+    // this.initData()
+  },
+  mounted () {
   },
   methods: {
+    ...mapActions(['setHomeShift']), // Actions调用
     change (value) {
       if (!this.actions.includes(value)) {
         this.actions.push(value)
+      }
+    },
+    // 接口请求
+    async initData () {
+      getRequest({ data: '123' }).then(() => {}).catch(() => {})
+      postRequest({ data: '123' }).then(() => {}).catch(() => {})
+      try {
+        const getRequestData = await getRequest({ data: '123' })
+        const postRequestData = await postRequest({ data: '123' })
+        if (getRequestData && postRequestData) {}
+      } catch (error) {
       }
     }
   },

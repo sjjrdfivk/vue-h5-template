@@ -32,7 +32,6 @@ export default {
 </script>
 
 <style lang="less">
-@import 'http://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css'; // muse-ui对应icons样式
 .Loading{
   position: fixed;
   left: 45%;
