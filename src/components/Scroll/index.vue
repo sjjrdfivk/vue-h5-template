@@ -56,7 +56,7 @@ export default {
         if (typeof (this.bottomMethod) === 'function') {
           pullUpLoad = {
             pullUpLoad: {
-              threshold: -10
+              threshold: -1
             }
           }
         }

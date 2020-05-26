@@ -14,7 +14,7 @@
         <pictures v-if="actions.includes('pictures')"></pictures>
       </div>
     </section>
-    <footer class="home-container">
+    <footer class="home-container" ref="footer">
       <mu-container>
         <mu-bottom-nav :value.sync="shift" shift @change="change">
             <mu-bottom-nav-item value="movies" title="Movies" icon="ondemand_video"></mu-bottom-nav-item>
@@ -55,9 +55,10 @@ export default {
     // this.initData()
   },
   mounted () {
+    this.setFooterHeight(this.$refs.footer.clientHeight)
   },
   methods: {
-    ...mapActions(['setHomeShift']), // Actions调用
+    ...mapActions(['setHomeShift', 'setFooterHeight']), // Actions调用
     change (value) {
       if (!this.actions.includes(value)) {
         this.actions.push(value)

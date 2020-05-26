@@ -1,30 +1,41 @@
 <template>
   <div class="movies" v-loading="loading">
     <Iscroll
-    :height="500"
+    :height="wrapperHeight"
     :top-method="loadTop"
     :bottom-method="loadBottom"
     ref="Iscroll"
     >
-      <ul>
-        <li v-for="item in list" :key='item'>
-          <div @click="goPage">item-{{item}}</div>
-        </li>
-      </ul>
+      <mu-list>
+        <mu-list-item button v-for="item in list" :key='item' @click="goPage">
+          <mu-list-item-title>Go Page</mu-list-item-title>
+          <mu-list-item-action>
+            <mu-icon value="info"></mu-icon>
+          </mu-list-item-action>
+        </mu-list-item>
+      </mu-list>
     </Iscroll>
   </div>
 </template>
 
 <script>
 import Iscroll from '@/components/Scroll'
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
       list: [],
-      loading: true
+      loading: true,
+      wrapperHeight: 0
     }
   },
+  computed: {
+    ...mapState(['home']) // State调用
+  },
   mounted () {
+    this.$nextTick(() => {
+      this.wrapperHeight = (document.documentElement.clientHeight || window.innerHeight || document.body.clientHeight) - this.home.footerHeight
+    })
     this.initList()
     setTimeout(() => {
       this.loading = false
@@ -60,7 +71,7 @@ export default {
 </script>
 <style scoped lang="less">
 .movies{
-  background: rgba(242,242,248,1);
+  // background: rgba(242,242,248,1);
   ul {
     li {
       margin: .1rem 0;
