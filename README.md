@@ -2,7 +2,7 @@
 
 ______
 
-[查看 demo](https://solui.cn/vue-h5-template/#/) 建议手机模式查看
+[查看 demo](https://sjjrdfivk.github.io/vue-h5-template) 建议手机模式查看
 
 ###启动项目
 ```
